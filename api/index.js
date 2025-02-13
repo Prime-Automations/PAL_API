@@ -11,6 +11,7 @@ const app = express();
 
 // Enable CORS for local testing
 app.use(cors());
+app.use(cors({ origin: "http://localhost:5173" }));
 app.use(express.json());
 
 // Cloudinary Config
@@ -48,6 +49,9 @@ app.get("/", (req, res) => {
 // 📤 **Upload Route (Supports JSON & Image)**
 app.post("/upload", upload.single("file"), async (req, res) => {
   try {
+    console.log("Request body:", req.body);
+    console.log("File:", req.file);
+
     // Get metadata JSON
     let metadata = req.body.metadata;
     if (metadata) {
