@@ -105,7 +105,7 @@ app.put("/articles/:id", async (req, res) => {
     const { title, content, type, published } = req.body;
 
     const result = await pool.query(
-      "UPDATE articles SET title=$1, content=$2, type=$3, published=$4, upload_date=NOW() WHERE id=$5 RETURNING *",
+      "UPDATE articles SET title=$1, content=$2, category=$3, is_published=$4, created_at=NOW() WHERE id=$5 RETURNING *",
       [title, content, type, published, id]
     );
 
